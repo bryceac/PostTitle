@@ -10,20 +10,20 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
 
 
-// the tag title class appends to tag name to Harabi's ATOM feed
-class TagTitle extends Plugin
+// the post title class appends the post title to Harabi's ATOM feed title
+class PostTitle extends Plugin
 {
 	// the following function is needed to work with the ATOM feed
 	public function action_atom_get_collection($xml, $params, $handler_vars)
 	{
-		// check if feed is a tag collection and executes the code in the block
-		if ( Controller::get_action() == 'tag_collection' ) 
+		// check if feed is an feed and executes the code in the block
+		if ( Controller::get_action() == 'entry_comments' ) 
 		{
-			// if the condition is true, the following appends the tag name with the name of the blog
-			$xml->title =  ucwords(htmlentities(Tags::get_by_slug(Controller::get_var('tag'))->term_display)) . ' - ' . Utils::htmlspecialchars( Options::get( 'title' ) );
+			// if the condition is true, the following appends the post title with the name of the blog
+			$xml->title = htmlentities(Posts::by_slug(Controller::get_var('post'))->title) . ' - ' . Utils::htmlspecialchars( Options::get( 'title' ) );
 			
 			// the following changes the description, or subtitle, as the ATOM standard calls it, and makes it reflect the feed
-			$xml->subtitle = ' posts on ' . htmlentities(Tags::get_by_slug(Controller::get_var('tag'))->term_display) . ' from ' . Utils::htmlspecialchars( Options::get( 'title' ) );
+			$xml->subtitle = ' comments on ' . htmlentities(Posts::by_slug(Controller::get_var('post'))->title) . ' from ' . Utils::htmlspecialchars( Options::get( 'title' ) );
 		}
 	}
 } // end class
