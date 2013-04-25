@@ -13,17 +13,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 // the post title class appends the post title to Harabi's ATOM feed title
 class PostTitle extends Plugin
 {
-	// the following function is needed to work with the ATOM feed
-	public function action_atom_get_collection($xml, $params, $handler_vars)
+	// the following function is needed to work with the entry comments ATOM feed
+	public function action_atom_get_comments($xml, $params, $handler_vars)
 	{
-		// check if feed is an feed and executes the code in the block
+		// check if feed is an entry comment feed and executes the code in the block
 		if ( Controller::get_action() == 'entry_comments' ) 
 		{
 			// if the condition is true, the following appends the post title with the name of the blog
-			$xml->title = htmlentities(Posts::by_slug(Controller::get_var('post'))->title) . ' - ' . Utils::htmlspecialchars( Options::get( 'title' ) );
+			$xml->title = htmlentities(Post::get(array('slug' => Controller::get_var('slug')))->title) . ' - ' . Utils::htmlspecialchars( Options::get( 'title' ) );
 			
 			// the following changes the description, or subtitle, as the ATOM standard calls it, and makes it reflect the feed
-			$xml->subtitle = ' comments on ' . htmlentities(Posts::by_slug(Controller::get_var('post'))->title) . ' from ' . Utils::htmlspecialchars( Options::get( 'title' ) );
+			$xml->subtitle = ' comments on ' . htmlentities(Post::get(array('slug' => Controller::get_var('slug')))->title) . ' from ' . Utils::htmlspecialchars( Options::get( 'title' ) );
 		}
 	}
 } // end class
