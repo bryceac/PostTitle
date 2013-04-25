@@ -1,10 +1,10 @@
-= Tag Title =
+= Post Title =
 '''Version:''' 0.1
 '''Copyright:''' 2013 Bryce Campbell
 
 ==Description== 
 
-This plugin modifies the feed title of Habari's ATOM feed to include tags in the feed title. It also modifies the subtitle, in order to ensure people know what the feed contains.
+This plugin is based on my [https://github.com/bryceac/TagTitle Tag Title] plugin and functions pretty much the same, except that the ATOM feed is modified to include post titles in the feed title.
 
 == Support ==
 

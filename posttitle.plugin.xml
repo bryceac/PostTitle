@@ -16,7 +16,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 <license url="http://opensource.org/licenses/MIT">MIT License</license>
 <author url="http://blog.brycecampbell.me">Bryce C.</author>
 <version>0.1</version>
-<description>This plugin is based on my Tag Title plugin, and functions the same, but includes the post title in the feed title of Habari&#39;s ATOM feed.</description>
+<description>This plugin is based on my Tag Title plugin, and functions the same, but includes the post title in the feed title of Habari&#39;s ATOM feed, not tag names.</description>
 <copyright>2013</copyright>
 <guid>ac6309cc-bd90-4899-856B-ab2519b2d884</guid>
 </pluggable>
